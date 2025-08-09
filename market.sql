@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Oct 01, 2022 at 02:07 PM
--- Server version: 8.0.18
--- PHP Version: 7.4.0
+-- Host: 127.0.0.1
+-- Generation Time: Aug 09, 2025 at 10:21 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,10 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `backend`
 --
 
-DROP TABLE IF EXISTS `backend`;
-CREATE TABLE IF NOT EXISTS `backend` (
-  `uname` varchar(50) COLLATE utf8_bin NOT NULL,
-  `pword` varchar(50) COLLATE utf8_bin NOT NULL
+CREATE TABLE `backend` (
+  `uname` varchar(50) NOT NULL,
+  `pword` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -44,77 +42,113 @@ INSERT INTO `backend` (`uname`, `pword`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `refid` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `gsm` varchar(200) NOT NULL,
+  `amount` varchar(200) NOT NULL,
+  `shopnumber` varchar(100) NOT NULL,
+  `date_paid` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `refid`, `email`, `name`, `gsm`, `amount`, `shopnumber`, `date_paid`) VALUES
+(2, 'GBF53F', 'mibrahimmusa34@gmail.com', 'Muhammad Ibrahim Musa', '1234', '45000', 'A1', '2025-08-09 18:53:48.580215');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shopowners`
+--
+
+CREATE TABLE `shopowners` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `status` varchar(200) NOT NULL,
+  `pword` varchar(50) NOT NULL,
+  `gsm` varchar(50) NOT NULL,
+  `shopnumber` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `shopowners`
+--
+
+INSERT INTO `shopowners` (`id`, `name`, `email`, `status`, `pword`, `gsm`, `shopnumber`) VALUES
+(8, 'Muhammad Ibrahim Musa', 'mibrahimmusa34@gmail.com', 'PAID', '1234', '1234', 'A1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tax`
 --
 
-DROP TABLE IF EXISTS `tax`;
-CREATE TABLE IF NOT EXISTS `tax` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tax` varchar(200) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE `tax` (
+  `id` int(11) NOT NULL,
+  `tax` varchar(200) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `tax`
 --
 
 INSERT INTO `tax` (`id`, `tax`) VALUES
-(1, '19000');
-
--- --------------------------------------------------------
+(1, '45000');
 
 --
--- Table structure for table `payment`
+-- Indexes for dumped tables
 --
 
-DROP TABLE IF EXISTS `payment`;
-CREATE TABLE IF NOT EXISTS `payment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `refid` varchar(200) COLLATE utf8_bin NOT NULL,
-  `email` varchar(200) COLLATE utf8_bin NOT NULL,
-  `name` varchar(200) COLLATE utf8_bin NOT NULL,
-  `gsm` varchar(200) COLLATE utf8_bin NOT NULL,
-  `amount` varchar(200) COLLATE utf8_bin NOT NULL,
-  `date_paid` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Dumping data for table `payment`
+-- Indexes for table `shopowners`
 --
-
-INSERT INTO `payment` (`id`, `refid`, `email`, `name`, `gsm`, `amount`, `date_paid`) VALUES
-(1, '97A72F', 'HNDSWD2023/015', 'Abu Bilal', '0903839325', '17000', '2022-10-01 13:44:38.141228');
-
--- --------------------------------------------------------
+ALTER TABLE `shopowners`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Table structure for table `shopOwners`
+-- Indexes for table `tax`
 --
-
-DROP TABLE IF EXISTS `shopOwners`;
-CREATE TABLE IF NOT EXISTS `shopOwners` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) COLLATE utf8_bin NOT NULL,
-  `email` varchar(200) COLLATE utf8_bin NOT NULL,
-  `status` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `pword` varchar(50) COLLATE utf8_bin NOT NULL,
-  `gsm` varchar(50) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ALTER TABLE `tax`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Dumping data for table `shopOwners`
+-- AUTO_INCREMENT for dumped tables
 --
 
-INSERT INTO `shopOwners` (`id`, `name`, `email`, `status`, `pword`, `gsm`) VALUES
-(1, 'Sani Adamu', 'HNDSWD2019/003', 'PAID', '989810', '0903839325'),
-(2, 'Ibrahim', 'NDCS 2019/234', 'PAID', '123456', '0903839325'),
-(3, 'Saminu', 'NDSLT 2019/345', 'PAID', '123456', '09047283749'),
-(4, 'Halima Attahiru', 'NDCS 2019/298', 'PAID', '123456', '0903839325');
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `shopowners`
+--
+ALTER TABLE `shopowners`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tax`
+--
+ALTER TABLE `tax`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
