@@ -1,3 +1,8 @@
+<?php 
+
+include "include/server.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +23,26 @@
   <link rel="stylesheet" href="assets/css/owl.css">
   <link rel="stylesheet" href="assets/css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <script src="dist/js/iziToast.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="dist/css/iziToast.min.css">
+
 </head>
 
 <body>
+
+<?php
+    if ($_GET['msg']=="error") { ?>
+        <script>
+       
+           iziToast.error({
+              title: '',
+              message: 'Error , try again',
+              position: 'topRight',
+               animateInside: true,
+          });
+       
+    </script> 
+    <?php } ?>
 
   <!-- Header -->
   <header class="header-area header-sticky">
@@ -64,29 +86,29 @@
               </ul>
 
               <!-- User Login Form -->
-              <form id="userForm" action="user_login.php" method="POST">
+              <form id="userForm" method="POST">
                 <div class="form-group mb-3">
                   <label for="userEmail">Email address</label>
                   <input type="email" class="form-control" id="userEmail" name="email" placeholder="Enter email" required>
                 </div>
                 <div class="form-group mb-4">
                   <label for="userPassword">Password</label>
-                  <input type="password" class="form-control" id="userPassword" name="password" placeholder="Password" required>
+                  <input type="password" class="form-control" id="userPassword" name="pword" placeholder="Password" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Login as User</button>
+                <button type="submit" class="btn btn-primary w-100" name="owner">Login as User</button>
               </form>
 
               <!-- Admin Login Form (hidden by default) -->
-              <form id="adminForm" action="admin_login.php" method="POST" style="display: none;">
+              <form id="adminForm" method="POST" style="display: none;">
                 <div class="form-group mb-3">
                   <label for="adminUsername">Username</label>
-                  <input type="text" class="form-control" id="adminUsername" name="username" placeholder="Enter username" required>
+                  <input type="text" class="form-control" id="adminUsername" name="uname" placeholder="Enter username" required>
                 </div>
                 <div class="form-group mb-4">
                   <label for="adminPassword">Password</label>
-                  <input type="password" class="form-control" id="adminPassword" name="password" placeholder="Password" required>
+                  <input type="password" class="form-control" id="adminPassword" name="pword" placeholder="Password" required>
                 </div>
-                <button type="submit" class="btn btn-danger w-100">Login as Admin</button>
+                <button type="submit" class="btn btn-danger w-100" name="login">Login as Admin</button>
               </form>
 
             </div>
