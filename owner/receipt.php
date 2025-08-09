@@ -2,13 +2,13 @@
 
 include "../include/server.php";
 
-$regno = $_SESSION['regno'];
-if ($regno == "") {
+$email = $_SESSION['email'];
+if ($email == "") {
     header('Location: ../index.php');
 }
 
 
-$sql = "SELECT * FROM payment WHERE regno = '$regno' LIMIT 1";
+$sql = "SELECT * FROM payment WHERE email = '$email' LIMIT 1";
 $run = mysqli_query($dbcon, $sql);
 $row = mysqli_fetch_assoc($run);
 $name = $row['name'];
@@ -51,13 +51,14 @@ $d=strtotime("".$row['date_paid']."");
     				 <div class="row">
 					<div class="col-sm-6">
 						<div class="receipt-left">
+							<img class="img-responsive" alt="iamgurdeeposahan" src="../img/logo.jpeg" style="width: 25%; ">
 						</div>
 					</div>
 					<div class="col-md-6 text-right">
 						<div class="receipt-right">
-							<h5 align="right" style="font-size: 14px">SAMBAWA INTERNATIONAL</h5>
+							<h5 align="right" style="font-size: 14px">ABU COM Market Tax System</h5>
 							<p align="right">08000000000 <i class="fa fa-phone"></i></p>
-							<p align="right">info@sambawa.org<i class="fa fa-envelope"></i></p>
+							<p align="right">info@nilest.org<i class="fa fa-envelope"></i></p>
 						</div>
 					</div>
 				</div>
@@ -70,7 +71,8 @@ $d=strtotime("".$row['date_paid']."");
 					<div class="col-sm-8">
 						<div class="receipt-right">
 							<h5><?php echo strtoupper($row['name']); ?></h5>
-							<p><b>Username :</b> <?php echo $row['regno'] ?></p>
+							<p><b>Reg. Number :</b> <?php echo $row['email'] ?></p>
+							<p><b>Shop Number :</b> <?php echo $row['shopnumber']; ?></p>
 							<p><b>Phone Number : </b> <?php echo $row['gsm']; ?></p>
 							
 						</div>
@@ -94,7 +96,7 @@ $d=strtotime("".$row['date_paid']."");
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-9">Payment for rent</td>
+                            <td class="col-md-9">Payment for Tax fee</td>
                             <td class="col-md-3">&#x20a6 <?php echo number_format($row['amount']); ?></td>
                         </tr>
                         <tr>

@@ -2,18 +2,18 @@
 
 include "../include/server.php";
 
-$regno = $_SESSION['regno'];
-if ($regno == "") {
+$email = $_SESSION['email'];
+if ($email == "") {
     header('Location: ../index.php');
 }
 
 
-$sql = "SELECT * FROM students WHERE regno = '$regno' LIMIT 1";
+$sql = "SELECT * FROM shopowners WHERE email = '$email' LIMIT 1";
 $run = mysqli_query($dbcon, $sql);
 $row = mysqli_fetch_assoc($run);
 $name = $row['name'];
 $gsm = $row['gsm'];
-$level = $row['level'];
+$shopnumber = $row['shopnumber'];
 $dept = $row['dept'];
 $status = $row['status'];
 $email = $row['email'];
@@ -24,7 +24,7 @@ $email = $row['email'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rentee Dashboard</title>
+    <title>Student Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../bootstrap-icons/bootstrap-icons.css">
@@ -57,13 +57,13 @@ $email = $row['email'];
                                 <h6><span class="fa fa-user"></span></h6>
                             </div>
                             <div class="col-md-9">
-                                <h6><?php echo ucwords($name); ?></h6>
-                                <p style="color:#fff;font-size: 10px;"></p>
+                                <h6><?php echo ucwords($name); ?><br> <?php echo $shopnumber; ?></h6>
+                                <p style="color:#fff;font-size: 10px;">Tax Payment</p>
                             </div>
                         </div>
                         <div class="nav-list">
                             <ul>
-                                <li><a href="dashboard.php" class="active"><span class="fa fa-dashboard"></span> Dashboard</a></li>
+                                <li><a href="index.php" class="active"><span class="fa fa-dashboard"></span> Dashboard</a></li>
                                 
                                 <li><a href="../index.php"><span class="fa fa-sign-out"></span> Logout</a></li>
                             </ul>
@@ -72,7 +72,7 @@ $email = $row['email'];
                 </div>
                 <div class="col-md-10">
                     <div class="main">
-                       <h6><span class="fa fa-dashboard"></span> Rentee Dashboard</h6>
+                       <h6><span class="fa fa-dashboard"></span> Student Dashboard</h6>
                     <br>
 
 
@@ -85,11 +85,11 @@ $email = $row['email'];
                                 <h4>
                                     <?php 
 
-                                    $sql = "SELECT * FROM fee WHERE dept = '$dept' AND level = '$level'";
+                                    $sql = "SELECT * FROM tax ";
                                     $run = mysqli_query($dbcon,$sql);
                                     $row = mysqli_fetch_assoc($run);
 
-                                    $first = $row['fee'];
+                                    $first = $row['tax'];
 
                                     echo "&#8358;".number_format($first);
 
