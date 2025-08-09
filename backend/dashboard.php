@@ -42,14 +42,14 @@ include "../include/server.php";
                             </div>
                             <div class="col-md-9">
                                 <h6>Admin Dashboard</h6>
-                                <p style="color:#fff;font-size: 10px;">Sambawa International</p>
+                                <p style="color:#fff;font-size: 10px;">ABU COM MARKET</p>
                             </div>
                         </div>
                         <div class="nav-list">
                             <ul>
                                 <li><a href="dashboard.php" class="active"><span class="fa fa-dashboard"></span> Dashboard</a></li>
-                                <li><a href="register.php"><span class="bi bi-card-list"></span> Register Rentee</a></li>
-                                <li><a href="view.php"><span class="bi bi-eye"></span> View Rentees</a></li>
+                                <li><a href="register.php"><span class="bi bi-card-list"></span> Register Owner</a></li>
+                                <li><a href="view.php"><span class="bi bi-eye"></span> View Owners</a></li>
                                 <li><a href="verify.php"><span class="fa fa-drivers-license-o"></span> Verify Payment</a></li>
                                 <li><a href="../index.php"><span class="fa fa-sign-out"></span> Logout</a></li>
                             </ul>
@@ -68,11 +68,11 @@ include "../include/server.php";
                             <div class="box shadow">
                                 
                                 <span class="bi bi-card-list "></span>
-                                <h5>Rentees</h5>
+                                <h5>Owners</h5>
                                 <h4>
                                     <?php 
 
-                                    $sql = "SELECT COUNT(id) AS total FROM students";
+                                    $sql = "SELECT COUNT(id) AS total FROM shopowners";
                                     $run = mysqli_query($dbcon,$sql);
                                     $row = mysqli_fetch_assoc($run);
 
@@ -91,7 +91,7 @@ include "../include/server.php";
                                 <h4>
                            <?php 
 
-                                    $sql = "SELECT COUNT(id) AS total FROM students WHERE status = 'PAID'";
+                                    $sql = "SELECT COUNT(id) AS total FROM shopowners WHERE status = 'PAID'";
                                     $run = mysqli_query($dbcon,$sql);
                                     $row2 = mysqli_fetch_assoc($run);
                                     $second = $row2['total'];
@@ -142,14 +142,14 @@ include "../include/server.php";
 
                      <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
               <thead>
-  <tr>
-    <th>SN</th>
-    <th>Name</th>
-    <th>Username</th>
-       <th>Ref ID</th>
-       <th>Amount</th>
-       <th>GSM</th>
-    <th>Payment Date</th>
+    <tr>
+        <th>SN</th>
+        <th>Name</th>
+        <th>Shop No.</th>
+        <th>Ref ID</th>
+        <th>Amount</th>
+        <th>GSM</th>
+        <th>Payment Date</th>
   </tr>
   </thead>
   <?php
@@ -160,7 +160,7 @@ include "../include/server.php";
     <td><?php echo $sn++; ?></td>
     <td><?php echo $prop['name']; ?></td>
    
-    <td><?php echo $prop['regno']; ?></td>
+    <td><?php echo $prop['shopnumber']; ?></td>
     <td><?php echo $prop['refid']; ?></td>
     <td><?php echo $prop['amount']; ?></td>
     <td><?php echo $prop['gsm']; ?></td>

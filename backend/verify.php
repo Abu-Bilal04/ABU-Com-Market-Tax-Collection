@@ -89,14 +89,14 @@ include "../include/server.php";
                             </div>
                             <div class="col-md-9">
                                 <h6>Admin Dashboard</h6>
-                                <p style="color:#fff;font-size: 10px;">Sambawa International</p>
+                                <p style="color:#fff;font-size: 10px;">ABU COM MARKET</p>
                             </div>
                         </div>
                         <div class="nav-list">
                             <ul>
                                 <li><a href="dashboard.php"><span class="fa fa-dashboard"></span> Dashboard</a></li>
-                                <li><a href="register.php"><span class="bi bi-card-list"></span> Register Rentee</a></li>
-                                <li><a href="view.php" ><span class="bi bi-eye"></span> View Rentees</a></li>
+                                <li><a href="register.php"><span class="bi bi-card-list"></span> Register Owner</a></li>
+                                <li><a href="view.php" ><span class="bi bi-eye"></span> View Owners</a></li>
                                 <li><a href="verify.php" class="active"><span class="fa fa-drivers-license-o"></span> Verify Payment</a></li>
                                 <li><a href="../index.php"><span class="fa fa-sign-out"></span> Logout</a></li>
                             </ul>
@@ -105,7 +105,7 @@ include "../include/server.php";
                 </div>
                 <div class="col-md-10">
                     <div class="main">
-                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Registered Rentees</h6>
+                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Registered Owners</h6>
                     <br>
 
 
@@ -122,8 +122,8 @@ include "../include/server.php";
               <thead>
   <tr>
         <th>SN</th>
-    <th>Name</th>
-    <th>Username</th>
+        <th>Name</th>
+        <th>Shop No.</th>
        <th>Ref ID</th>
        <th>Amount</th>
        <th>GSM</th>
@@ -137,7 +137,7 @@ include "../include/server.php";
      <td><?php echo $sn++; ?></td>
     <td><?php echo $prop['name']; ?></td>
    
-    <td><?php echo $prop['regno']; ?></td>
+    <td><?php echo $prop['shopnumber']; ?></td>
      <td><?php echo $prop['refid']; ?></td>
       <td><?php echo number_format($prop['amount']); ?></td>
        <td><?php echo $prop['gsm']; ?></td>

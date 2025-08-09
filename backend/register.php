@@ -50,7 +50,7 @@ include "../include/server.php";
        
            iziToast.success({
               title: '',
-              message: 'Rentee Registered Successfully!',
+              message: 'Owner Registered Successfully!',
               position: 'topRight',
                animateInside: true,
           });
@@ -76,14 +76,14 @@ include "../include/server.php";
                             </div>
                             <div class="col-md-9">
                                 <h6>Admin Dashboard</h6>
-                                <p style="color:#fff;font-size: 10px;">Sambawa International</p>
+                                <p style="color:#fff;font-size: 10px;">ABU COM MARKET</p>
                             </div>
                         </div>
                         <div class="nav-list">
                             <ul>
                                 <li><a href="dashboard.php"><span class="fa fa-dashboard"></span> Dashboard</a></li>
-                                <li><a href="register.php" class="active"><span class="bi bi-card-list"></span> Register Rentee</a></li>
-                                <li><a href="view.php"><span class="bi bi-eye"></span> View Rentees</a></li>
+                                <li><a href="register.php" class="active"><span class="bi bi-card-list"></span> Register Owner</a></li>
+                                <li><a href="view.php"><span class="bi bi-eye"></span> View Owners</a></li>
                                 <li><a href="verify.php"><span class="fa fa-drivers-license-o"></span> Verify Payment</a></li>
                                 <li><a href="../index.php"><span class="fa fa-sign-out"></span> Logout</a></li>
                             </ul>
@@ -92,19 +92,19 @@ include "../include/server.php";
                 </div>
                 <div class="col-md-10">
                     <div class="main">
-                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Register Rentee</h6>
+                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Register Owner</h6>
                     <br>
 
 
                     <div class="row">
                         <div class="col-md-12 bg-white shadow" style="padding: 40px;">
-                            <h2>Register Rentee</h2>
+                            <h2>Register Owner</h2>
                             <br>
                             <form action="register.php" method="POST">
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label>Rentees' Name</label>
+                                                <label>Owners' Name</label>
                                                 <input type="text" id="name" name="name" class="form-control name"  placeholder="Fullname" required>
                                             </div>
                                            
@@ -114,22 +114,13 @@ include "../include/server.php";
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                  <label>Username</label>
-                                                 <input type="text" id="regno" class="form-control" name="regno" placeholder="Username" required>
-                                            </div>
-
-                                                <input id="dept" name="dept" class="form-control dept" value="Computer Science" type="hidden">
-                                            
-
-                                            
-
-                                        
-
-                                                <input class="form-control" name="level" value="ND 1" type="hidden">
-                                            
-                                            <div class="form-group col-md-6">
                                                 <label>Email</label>
                                                 <input type="text" id="emal" class="form-control" name="email" placeholder="email" required>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Shop No.</label>
+                                                <input type="text" id="shopnumber" class="form-control" name="shopnumber" placeholder="Shop No." required>
                                             </div>
 
                                           <div class="form-group col-md-12">
@@ -139,7 +130,7 @@ include "../include/server.php";
 
 
                                            <br>
-                                            <button style="margin-top: 30px;" type="submit" class="btn btn-primary btn-lg btn-block" name="generate"> Register Rentee</button>
+                                            <button style="margin-top: 30px;" type="submit" class="btn btn-primary btn-lg btn-block" name="generate"> Register Owner</button>
 
 
                                            </form>
@@ -157,7 +148,14 @@ include "../include/server.php";
         </div>
 
 
-  
-
+<script>
+document.getElementById('gsm').addEventListener('input', function() {
+    // Get the phone number value
+    let phoneValue = this.value;
+    // Set the password field value to match phone number
+    document.getElementById('pword').value = phoneValue;
+});
+</script>
+    </div>
 </body>
 </html>

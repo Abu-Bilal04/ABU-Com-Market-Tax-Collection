@@ -50,7 +50,7 @@ include "../include/server.php";
        
            iziToast.success({
               title: '',
-              message: 'Fee Changed Successfully!',
+              message: 'Tax Changed Successfully!',
               position: 'topRight',
                animateInside: true,
           });
@@ -76,14 +76,14 @@ include "../include/server.php";
                             </div>
                             <div class="col-md-9">
                                 <h6>Admin Dashboard</h6>
-                                <p style="color:#fff;font-size: 10px;">Sambawa International</p>
+                                <p style="color:#fff;font-size: 10px;">ABU COM MARKET</p>
                             </div>
                         </div>
                         <div class="nav-list">
                             <ul>
                                 <li><a href="dashboard.php" class="active"><span class="fa fa-dashboard"></span> Dashboard</a></li>
-                                <li><a href="register.php" ><span class="bi bi-card-list"></span> Register Rentee</a></li>
-                                <li><a href="view.php"><span class="bi bi-eye"></span> View Rentees</a></li>
+                                <li><a href="register.php" ><span class="bi bi-card-list"></span> Register Owner</a></li>
+                                <li><a href="view.php"><span class="bi bi-eye"></span> View Owners</a></li>
                                 <li><a href="verify.php"><span class="fa fa-drivers-license-o"></span> Verify Payment</a></li>
                                 <li><a href="../index.php"><span class="fa fa-sign-out"></span> Logout</a></li>
                             </ul>
@@ -92,13 +92,13 @@ include "../include/server.php";
                 </div>
                 <div class="col-md-10">
                     <div class="main">
-                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Change Payment Fee</h6>
+                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Change Payment Tax</h6>
                     <br>
 
 
                     <div class="row">
                         <div class="col-md-12 bg-white shadow" style="padding: 40px;">
-                            <h2>Change Payment Fee</h2>
+                            <h2>Change Payment Tax</h2>
                             <br>
                             <form action="change.php" method="POST">
 
@@ -117,8 +117,8 @@ include "../include/server.php";
 
                                            
                                           <div class="form-group col-md-12">
-                                                <label>New Fee</label>
-                                                <input type="number" class="form-control" name="newfee" placeholder="New fee" required>
+                                                <label>New Tax</label>
+                                                <input type="number" class="form-control" name="tax" placeholder="New tax" required>
                                             </div>
 
                                            <br>

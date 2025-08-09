@@ -89,14 +89,14 @@ include "../include/server.php";
                             </div>
                             <div class="col-md-9">
                                 <h6>Admin Dashboard</h6>
-                                <p style="color:#fff;font-size: 10px;">Sambawa International</p>
+                                <p style="color:#fff;font-size: 10px;">ABU COM MARKET</p>
                             </div>
                         </div>
                         <div class="nav-list">
                             <ul>
                                 <li><a href="dashboard.php"><span class="fa fa-dashboard"></span> Dashboard</a></li>
-                                <li><a href="register.php"><span class="bi bi-card-list"></span> Register Rentee</a></li>
-                                <li><a href="view.php" class="active"><span class="bi bi-eye"></span> View Rentees</a></li>
+                                <li><a href="register.php"><span class="bi bi-card-list"></span> Register Owner</a></li>
+                                <li><a href="view.php" class="active"><span class="bi bi-eye"></span> View Owners</a></li>
                                 <li><a href="verify.php"><span class="fa fa-drivers-license-o"></span> Verify Payment</a></li>
                                 <li><a href="../index.php"><span class="fa fa-sign-out"></span> Logout</a></li>
                             </ul>
@@ -105,14 +105,14 @@ include "../include/server.php";
                 </div>
                 <div class="col-md-10">
                     <div class="main">
-                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Registered Rentees</h6>
+                       <h6><span class="fa fa-dashboard"></span> Admin Dashboard > Registered Owners</h6>
                     <br>
 
 
                     <div class="row">
                       
                             <div class="container shadow" style="padding: 30px;background-color: #fff;">
-                        <h2>All Registered Rentees</h2>
+                        <h2>All Registered Owners</h2>
                         <br>
             
                 
@@ -122,21 +122,20 @@ include "../include/server.php";
   <tr>
     <th>SN</th>
     <th>Name</th>
-    <th>Username</th>
+    <th>Shop No.</th>
     <th>Phone</th>
     <th>Status</th>
-    <th></th>
   </tr>
   </thead>
   <?php
   $sn=1;
-  $psql = mysqli_query($dbcon,"SELECT * FROM students ORDER BY id DESC");
+  $psql = mysqli_query($dbcon,"SELECT * FROM shopowners ORDER BY id DESC");
   while($prop = mysqli_fetch_array($psql)){ ?>
   <tr>
     <td><?php echo $sn++; ?></td>
     <td><?php echo $prop['name']; ?></td>
    
-    <td><?php echo $prop['regno']; ?></td>
+    <td><?php echo $prop['shopnumber']; ?></td>
    <td><?php echo $prop['gsm']; ?></td>
    <td><?php if ($prop['status']=="") {
        echo "<span style='color: red;'>NOT PAID</span>";
@@ -144,10 +143,6 @@ include "../include/server.php";
     echo "<span style='color: green;'>PAID</span>";
    } ?></td>
     
-    <td>
-        
-         <a data-tooltip title="Delete" href="delete.php?id=<?php echo $prop['id']; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> 
-        </td>
   </tr>
   <?php } ?>
 </table>
