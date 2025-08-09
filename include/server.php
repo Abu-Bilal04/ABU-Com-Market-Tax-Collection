@@ -16,12 +16,30 @@ if (isset($_POST['login'])) {
        $run = mysqli_query($dbcon,$check_user);
        if (mysqli_num_rows($run)>0) {
         $_SESSION['uname'] = $uname;
-          echo "<script>window.open('backend/index.php?msg=success','_self')</script>";
+          echo "<script>window.open('backend/dashboard.php?msg=success','_self')</script>";
         }else{
-         echo "<script>window.open('index.php?msg=error','_self')</script>";
+         echo "<script>window.open('login.php?msg=error','_self')</script>";
       } 
 }
 
+
+if (isset($_POST['owner'])) {
+
+      $email = $_POST['email'];
+      $pword = $_POST['pword'];
+
+ 
+       $check_user = "SELECT * FROM shopowners WHERE email = '$email' AND pword='$pword'";
+       $run = mysqli_query($dbcon,$check_user);
+       if (mysqli_num_rows($run)>0) {
+            $_SESSION['email'] = $email;
+          header("Location: owner/index.php?msg=success");
+          exit();
+
+        }else{
+          echo "<script>window.open('login.php?msg=error','_self')</script>";
+      } 
+    }
 
 
 
@@ -29,13 +47,11 @@ if (isset($_POST['login'])) {
 if (isset($_POST['generate'])) {
 
   $name = $_POST['name'];
-  $regno = $_POST['regno'];
+  $email = $_POST['email'];
   $gsm = $_POST['gsm'];
-  $level = $_POST['level'];
-  $dept = $_POST['dept'];
   $pword = $_POST['pword'];
-$email = $_POST['email'];
-  $insert = "INSERT INTO students (name, regno, gsm, level, dept, pword,email) VALUES ('$name','$regno','$gsm','$level','$dept','$pword','$email')";
+  $shopnumber = $_POST['shopnumber'];
+  $insert = "INSERT INTO shopOwners (name, email, gsm, pword, shopnumber) VALUES ('$name','$email','$gsm','$pword','$shopnumber')";
   if (mysqli_query($dbcon,$insert)) {
     echo "<script>window.open('register.php?msg=success','_self')</script>";
   
@@ -47,29 +63,11 @@ $email = $_POST['email'];
 
 
 
-if (isset($_POST['del_plate'])) {
-  $id = $_POST['id'];
-
-
-  $sql =  "DELETE FROM drugs WHERE id = '$id' ";
-  if (mysqli_query($dbcon,$sql)) {
-    echo "<script>window.open('view.php?msg=success','_self')</script>";
-  
-  }
-  else{
-    echo "<script>window.open('view.php?msg=error','_self')</script>";
-  }
-}
-
-
-
 if (isset($_POST['change'])) {
-  $dept = $_POST['dept'];
-  $level = $_POST['level'];
-  $newfee = $_POST['newfee'];
+  $tax = $_POST['tax'];
 
 
-  $sql =  "UPDATE fee SET fee = '$newfee' WHERE dept = '$dept' AND level = '$level' ";
+  $sql =  "UPDATE tax SET tax = '$tax'";
   if (mysqli_query($dbcon,$sql)) {
     echo "<script>window.open('change.php?msg=success','_self')</script>";
   
