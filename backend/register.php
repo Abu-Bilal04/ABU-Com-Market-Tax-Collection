@@ -125,7 +125,7 @@ include "../include/server.php";
 
                                           <div class="form-group col-md-12">
                                                 <label>Password</label>
-                                                <input type="password" id="pword" class="form-control" name="pword" placeholder="Password" required>
+                                                <input type="password" id="pword" class="form-control" name="pword" placeholder="Password" readonly required>
                                             </div>
 
 
@@ -158,4 +158,5 @@ document.getElementById('gsm').addEventListener('input', function() {
 </script>
     </div>
 </body>
+
 </html>
