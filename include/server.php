@@ -24,24 +24,27 @@ if (isset($_POST['login'])) {
 
 
 if (isset($_POST['owner'])) {
+    // Get form inputs
+    $email = $_POST['email'];
+    $pword = $_POST['pword'];
 
-      $email = $_POST['email'];
-      $pword = $_POST['pword'];
+    // Query
+    $check_user = "SELECT * FROM shopowners WHERE email = '$email' AND pword = '$pword'";
+    $run = mysqli_query($dbcon, $check_user);
 
- 
-       $check_user = "SELECT * FROM shopowners WHERE email = '$email' AND pword='$pword'";
-       $run = mysqli_query($dbcon,$check_user);
-       if (mysqli_num_rows($run)>0) {
-            $_SESSION['email'] = $email;
-          header("Location: owner/index.php?msg=success");
-          exit();
-
-        }else{
-          echo "<script>window.open('login.php?msg=error','_self')</script>";
-      } 
+    if (!$run) {
+        die("Database query failed: " . mysqli_error($dbcon));
     }
 
-
+    if (mysqli_num_rows($run) > 0) {
+        $_SESSION['email'] = $email;
+        header("Location: owner/index.php?msg=success");
+        exit();
+    } else {
+        header("Location: login.php?msg=error");
+        exit();
+    }
+}
 
 
 if (isset($_POST['generate'])) {
